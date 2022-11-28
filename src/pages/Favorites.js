@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+
 import { useNavigate, useParams } from "react-router-dom"
 import Places from "../components/homeComponents/Places";
 
@@ -22,6 +23,7 @@ function Favorites() {
                 )
                 setFavorites(res.data)
                 } catch (err){
+
                 console.log (err)
             }
         }
@@ -29,6 +31,7 @@ function Favorites() {
         apiCall()
     }, []);
     
+
 
     const deleteFavorite = async (favoriteID) => { 
         try{
@@ -56,8 +59,10 @@ function Favorites() {
             </div>
         ) 
         })}
+
     </div>
  )
 }
 
 export default Favorites
+
