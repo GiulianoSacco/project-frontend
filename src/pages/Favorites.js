@@ -1,33 +1,63 @@
-import axios from "axios";
+import axios from "axios"
 import { useEffect, useState } from "react"
-import './Favorites.css';
+import { useNavigate, useParams } from "react-router-dom"
+import Places from "../components/homeComponents/Places";
 
-const apiEndpoint = "http://localhost:8000/api/favorites"
-
-   function FavoritePlace() {
+function Favorites() {    
     const [favorites, setFavorites] = useState([])
- 
+    const apiEndpoint = "http://localhost:8000/api/favorites"
+    const {placeId}= useParams()
+    const navigate = useNavigate()
+
     useEffect(() => {
-       const apiCall = async () => {
-          const res = await axios.get(apiEndpoint)
-          setFavorites(res.data[0])
-       }
+        const apiCall = async () => {  
+        
+        
+            try{
+                const storedToken = localStorage.getItem("authToken");
+                const res = await axios.
+                get(
+                    apiEndpoint, 
+                    { headers: { Authorization: `Bearer ${storedToken}` } }
+                )
+                setFavorites(res.data)
+                } catch (err){
+                console.log (err)
+            }
+        }
+
         apiCall()
-    }, [])
+    }, []);
+    
 
+    const deleteFavorite = async (favoriteID) => { 
+        try{
+            console.log("Trying to delete : " + favoriteID)
+            const storedToken = localStorage.getItem("authToken");
+            const res = await axios.delete(
+                apiEndpoint + "/" + favoriteID,
+                { headers: { Authorization: `Bearer ${storedToken}` }})
+                
+                navigate("/favorites")
 
+        } catch(err){
+            console.log(err)
+        }
+    }
 
   return (
-    <div>
-       
+    <div>       
        <h1> My favorites </h1>
-       <ul>
-       {favorites.map(item =>
-          item.favorite === true ? <li key={item.id}>{item.name}</li> : null
-        )}
-      </ul>
-       
+       {favorites.map((fav) =>{
+        return(
+            <div key={fav._id}>
+                <Places key = {fav._id} place={fav.place}/>  
+                <button onClick={event => deleteFavorite(fav._id)}>Delete</button>   
+            </div>
+        ) 
+        })}
     </div>
  )
 }
-export default FavoritePlace
+
+export default Favorites

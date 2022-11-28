@@ -16,7 +16,8 @@ import MyPlaces from './pages/user/MyPlaces'
 import PhotoUser from './pages/user/PhotoUser'
 import PlacesForm from './pages/places/PlacesForm'
 import PlaceDetails from './pages/places/PlaceDetails'
-import OtherUser from './pages/user/OtherUser'
+import Favorites from './pages/Favorites'
+
 
 
 
@@ -38,8 +39,7 @@ function App() {
             <Route path="/places/:placeId" element={<PlaceDetails />} />
             <Route path="*" element={<ErrorPage />} />
             <Route path="/UserProfile" element={<UserProfile/>}/>
-            <Route path="/user-profile/:userId" element={<OtherUser/>}/>
-            {/* <Route path="/Favorites" element={<FavoritePlace/>}/> */}
+            <Route path="/Favorites" element={<Favorites/>}/>
          </Routes>
       </div>
    );
