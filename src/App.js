@@ -22,6 +22,9 @@ import PlacesForm from './pages/places/PlacesForm'
 import AddReview from './pages/places/AddReview';
 
 import PlaceDetails from './pages/places/PlaceDetails'
+
+import Favorites from './pages/Favorites'
+
 import OtherUser from './pages/user/OtherUser'
 import PetProfile from './pages/PetProfile'
 
