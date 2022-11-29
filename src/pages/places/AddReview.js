@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import AddComment from "../../components/reviewComponents/addComment";
+import AddComment from "../../components/reviewComponents/AddComment";
 
 
 import './AddReview.css';
@@ -10,10 +10,10 @@ import './AddReview.css';
 function AddReview(props) {
     const [check, setCheck] = useState(null)
     const [comment, setComment] = useState('')
-    const [counterHappy, setCounterHappy] = useState(false)
-    const [counterSad, setCounterSad] = useState(false)
-    const [hideHappy, setHideHappy] = useState(false)
-    const [hideSad, setHideSad] = useState(false)
+    const [like, setlike] = useState(false)
+    const [dislike, setdislike] = useState(false)
+    const [likeactive, setlikeactive] = useState(false)
+    const [dislikeactive, setdislikeactive] = useState(false)
 
     const navigate = useNavigate()
 
@@ -22,26 +22,33 @@ function AddReview(props) {
     const { placeId } = useParams()
 
     const checkBoxHandler1 = (event) => {
-        setCounterHappy(!counterHappy)
-        setHideSad(!hideSad)
-
-        if (counterHappy !== true) {
-            setCheck(true)
+        if (likeactive) {
+            setlikeactive(false)
+            setlike(like-1)
         } else {
-            setCheck(null)
+            setlikeactive(true)
+            setlike(like+1)
+            if(dislikeactive){
+                setdislikeactive(false)
+                setlike(like+1)
+                setdislike(dislike-1)
+            }
         }
     }
 
     const checkBoxHandler2 = (event) => {
-        setCounterSad(!counterSad)
-        setHideHappy(!hideHappy)
-
-        if (counterSad !== true) {
-            setCheck(false)
+        if (dislikeactive) {
+            setdislikeactive(false)
+            setdislike(dislike-1)
         } else {
-            setCheck(null)
+            setdislikeactive(true)
+            setdislike(dislike+1)
+            if(likeactive){
+                setlikeactive(false)
+                setdislike(dislike+1)
+                setlike(like-1)
+            }
         }
-
     }
 
 
@@ -66,10 +73,10 @@ function AddReview(props) {
             setCheck(null)
             setComment('')
             setCheck(null)
-            setCounterHappy(false)
-            setCounterSad(false)
-            setHideHappy(false)
-            setHideSad(false)
+            setlike(false)
+            setdislike(false)
+            setlikeactive(false)
+            setdislikeactive(false)
 
             navigate (`/places/${placeId}`)
 
@@ -85,13 +92,14 @@ function AddReview(props) {
             <form onSubmit={submitHandler} >
                 <label for="veritifaction">Place verified?</label>
                 <br></br>
-                {!hideHappy && <img src="https://res.cloudinary.com/dfajfbnkr/image/upload/v1669632559/Pawsome/happy_xdpcvc.png" className="iconVerification" />}
-                {!hideHappy && <input type="checkbox" id="verificationPlace" name="verifiedYes" value={true} onChange={checkBoxHandler1} />}
+                {!likeactive && <img src="https://res.cloudinary.com/dfajfbnkr/image/upload/v1669632559/Pawsome/happy_xdpcvc.png" className="iconVerification" />}{like}
+                {!likeactive && <input type="checkbox" id="verificationPlace" name="verifiedYes" value={true} onChange={checkBoxHandler1} />}
+                {likeactive && <img src="https://res.cloudinary.com/dfajfbnkr/image/upload/v1669632559/Pawsome/happy_xdpcvc.png" className="iconVerification" />}
                 <br></br>
 
-                {!hideSad && <img src="https://res.cloudinary.com/dfajfbnkr/image/upload/v1669632559/Pawsome/sad-face_lhbvxo.png" className="iconVerification" />}
-                {!hideSad && <input type="checkbox" id="verificationPlace" name="verifiedNo" value={false} onChange={checkBoxHandler2} />}
-
+                {!dislikeactive && <img src="https://res.cloudinary.com/dfajfbnkr/image/upload/v1669632559/Pawsome/sad-face_lhbvxo.png" className="iconVerification" />}{dislike}
+                {!dislikeactive && <input type="checkbox" id="verificationPlace" name="verifiedNo" value={false} onChange={checkBoxHandler2} />}
+                {dislikeactive && <img src="https://res.cloudinary.com/dfajfbnkr/image/upload/v1669632559/Pawsome/sad-face_lhbvxo.png" className="iconVerification" />}
 
                 {check !== null && <div> <AddComment comment={comment} onComment={setComment} />
 
