@@ -15,35 +15,25 @@ import CreatePet from './pages/pet/CreatePet'
 import MyPlaces from './pages/user/MyPlaces'
 import PhotoUser from './pages/user/PhotoUser'
 import PlacesForm from './pages/places/PlacesForm'
-
 import AddReview from './pages/places/AddReview';
-
 import PlaceDetails from './pages/places/PlaceDetails'
 import OtherUser from './pages/user/OtherUser'
 import PetProfile from './pages/PetProfile'
-
 import Forgotpassword from './pages/auth/Forgotpassword';
 import ResetScreen from './pages/auth/ResetScreen';
-
 import EditPlace from './pages/places/EditPlace'
-
-
 import IsLoggedin from './components/IsLoggedin';
-
-
-
-
-
-
+import { ChakraProvider } from '@chakra-ui/react'
 
 function App() {
    return (
-
-
+    
+    <ChakraProvider>
      <div className="App">
        <Toaster />
        <Navbar />
        <Routes>
+      
          <Route path="/" element={<IsLoggedin><Login /></IsLoggedin>} />
          <Route path="home" element={<Home />} />
          <Route path="/signup" element={<IsLoggedin><Signup /></IsLoggedin>} />
@@ -63,7 +53,7 @@ function App() {
          <Route path="/profile/MyPlaces/edit-place/:placeId" element={<IsPrivate><EditPlace/></IsPrivate>} />
        </Routes>
      </div>
-
+     </ChakraProvider>
 
 
    );

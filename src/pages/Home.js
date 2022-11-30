@@ -1,3 +1,4 @@
+import './home.css';
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -5,6 +6,7 @@ import Places from "../components/homeComponents/Places";
 import Search from "../components/homeComponents/Search";
 import Filter from "../components/homeComponents/Filter";
 import Map from "../components/mapComponents/Map";
+
 
 const apiEndpoint = "http://localhost:8000/api/places";
 
@@ -51,12 +53,13 @@ export default function Home() {
   return (
     <div>
       <Map places = {filterPlaces}/>
-      <h1>list</h1>
+      <h1>Find Pet Friendly places!</h1>
       <Search onSearch={searchHandler} />
       <Filter setActiveType={setActiveType}/>
       <ul>
         {filterPlaces.map((place) => {
           return <Places key={place._id} place={place} />;
+        
         })}
       </ul>
     </div>

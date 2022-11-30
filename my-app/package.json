@@ -1,33 +1,19 @@
 {
-  "name": "project-3-frontend",
+  "name": "my-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "^2.4.2",
-    "@chakra-ui/theme-tools": "^2.0.14",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@fortawesome/fontawesome-svg-core": "^6.2.1",
-    "@fortawesome/free-solid-svg-icons": "^6.2.1",
-    "@fortawesome/react-fontawesome": "^0.2.0",
-    "@react-google-maps/api": "^2.7.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.2.0",
+    "@testing-library/user-event": "^14.4.3",
     "framer-motion": "^6.5.1",
-    "google-maps-react": "^2.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-geocode": "^0.2.3",
-    "react-google-location": "^1.2.2",
-    "react-hot-toast": "^2.4.0",
-    "react-marker": "^1.0.1",
-    "react-places-autocomplete": "^7.3.0",
-    "react-router-dom": "^6.4.3",
+    "react-icons": "^3.11.0",
     "react-scripts": "5.0.1",
-    "toast": "^0.5.4",
-    "web": "^0.0.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -37,10 +23,7 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "extends": "react-app"
   },
   "browserslist": {
     "production": [

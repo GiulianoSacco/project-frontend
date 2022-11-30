@@ -7,6 +7,7 @@ import myPetImg from "../../assets/mypet.png"
 import './UserProfile.css';
 import axios from 'axios';
 import { useState, useEffect } from "react";
+import { Button, ButtonGroup } from '@chakra-ui/react'
 
 const storedToken = localStorage.getItem("authToken");
 const apiEndpoint = "http://localhost:8000/api/profile";
@@ -29,15 +30,19 @@ const UserProfile =() => {
     }, []);
 
     return (
+
         <div className="userprofile" key={profile._id}>
             <h1>Hello {profile.name}!</h1>
+    
             <img src={profile.image} alt="" />
             <div>
                 {pet.map((element) => {
                     return (
                         <div key={element._id}>
+                                                   
                             <h2>Pet name {element.namePet}</h2>
                             <img className="petProfile" src={element.image} alt=""/>
+                        
                         </div>
                     )
                 })}
