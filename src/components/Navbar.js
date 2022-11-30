@@ -36,7 +36,7 @@ export default function Navbar() {
    function DropdownItem(props) {
       return (
          <li className='dropdownItem'>
-            <div>{props.children}</div>
+            {props.children}
          </li>
       )
    }

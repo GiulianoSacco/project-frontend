@@ -19,6 +19,7 @@ ul{
 }
 a{
     text-decoration: none;
+    color: black;
 }
 .menu-trigger{
     height: 50px;
@@ -31,7 +32,7 @@ a{
     position: absolute;
     top:80px;
     right: 20px;
-    background-color: grey;
+    background-color: white;
     border-radius: var(--border-radius);
     padding: 5px;
     width: 170px;
@@ -63,7 +64,7 @@ a{
     padding: 10px 0;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
-.dropdown-menu ul li:hover div{
+.dropdown-menu ul li:hover a{
     color: aqua;
     cursor: pointer;
 }
@@ -81,7 +82,7 @@ a{
     opacity: 0.5;
     transition: var(--speed);
 }
-.dropdownItem div{
+.dropdownItem a{
     max-width: 250px;
     transition: var(--speed);
 }
